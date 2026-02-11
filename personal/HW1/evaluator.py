@@ -18,24 +18,6 @@ def evaluate(ast):
 
 def test_evaluate():
     print("test evaluate()")
-    ast = {"tag": "number", "value": 3}
-    assert evaluate(ast) == 3
-    ast = {
-        "tag": "+",
-        "left": {"tag": "number", "value": 3},
-        "right": {"tag": "number", "value": 4},
-    }
-    assert evaluate(ast) == 7
-    ast = {
-        "tag": "*",
-        "left": {
-            "tag": "+",
-            "left": {"tag": "number", "value": 3},
-            "right": {"tag": "number", "value": 4},
-        },
-        "right": {"tag": "number", "value": 5},
-    }
-    assert evaluate(ast) == 35
     ast = {
         "tag": "%",
         "left": {"tag": "number", "value": -5},

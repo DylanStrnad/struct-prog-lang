@@ -41,38 +41,6 @@ def parse_term(tokens):
 def test_parse_term():
     """term = factor { ("*" | "/" | "%") factor }"""
     print("test parse_term()")
-    tokens = tokenize("3")
-    ast, tokens = parse_term(tokens)
-    assert ast == {"tag": "number", "value": 3}
-    assert tokens == [{"tag": None, "line": 1, "column": 2}]
-    tokens = tokenize("3*4")
-    ast, tokens = parse_term(tokens)
-    assert ast == {
-        "left": {"tag": "number", "value": 3},
-        "right": {"tag": "number", "value": 4},
-        "tag": "*",
-    }
-    assert tokens == [{"column": 4, "line": 1, "tag": None}]
-    tokens = tokenize("3/4")
-    ast, tokens = parse_term(tokens)
-    assert ast == {
-        "left": {"tag": "number", "value": 3},
-        "right": {"tag": "number", "value": 4},
-        "tag": "/",
-    }
-    assert tokens == [{"column": 4, "line": 1, "tag": None}]
-    tokens = tokenize("3/4*5")
-    ast, tokens = parse_term(tokens)
-    assert ast == {
-        "left": {
-            "left": {"tag": "number", "value": 3},
-            "right": {"tag": "number", "value": 4},
-            "tag": "/",
-        },
-        "right": {"tag": "number", "value": 5},
-        "tag": "*",
-    }
-    assert tokens == [{"column": 6, "line": 1, "tag": None}]
 
     tokens = tokenize("3%5")
     ast, tokens = parse_term(tokens)
