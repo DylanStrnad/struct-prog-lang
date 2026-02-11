@@ -2,7 +2,7 @@ from tokenizer import tokenize
 
 # expression = term {(+ | -) term}
 # term = factor {(* | /) factor}
-# factor = <number> ## factor can be num token
+# factor = <number> | "(" expression ")" ## factor can be num token
 
 
 def parse_factor(tokens):
@@ -10,7 +10,13 @@ def parse_factor(tokens):
     if token["tag"] == "number":
         node = {"tag": "number", "value": token["value"]}
         return node, tokens[1:]
-    assert False, f"Expected a number, got {token}"
+    if token ["tag"] == "(":
+        node, tokens = parse_expression(tokens[1:])
+        if tokens[0]["tag"] != ")":
+            raise SyntaxError(f"expected a ), got {tokens[0]}")
+        return node, tokens[1:]
+    
+    raise SyntaxError( f"Expected expression, got {tokens}")
 
 
 def test_parse_factor():
@@ -18,6 +24,14 @@ def test_parse_factor():
     tokens = tokenize("3+4")
     ast, tokens = parse_factor(tokens)
     print(ast)
+
+    print("test parse factor")
+    tokens = tokenize("5*(3+4)")
+    ast, tokens = parse_factor(tokens)
+
+    print (ast, tokens)
+
+
     
     quit()
 
@@ -60,7 +74,7 @@ def test_parse_term():
 
 
 if __name__ == "__main__":
-    # test_parse_factor()
+    test_parse_factor()
     #test_parse_term()
     test_parse_expression()
     print("done")

@@ -22,7 +22,11 @@ patterns = [
     (r"\-", "-"),
     (r"\/", "/"),
     (r"\*", "*"),
-    (r"\.", "error"),
+    (r"\(", "("),
+    (r"\)", ")"),
+    (r"\)", ")"),
+    (r".", "error"),
+    (r"[a-zA-Z_][a-zA-Z0-9_]*", "identifier"),
 ]
 
 patterns = [(re.compile(p), tag) for p, tag in patterns]
