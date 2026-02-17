@@ -1,0 +1,10 @@
+* environment - stores values of identifiers (e.g. x: 3)
+
+* constraints - variable only stores specific type (int, char, etc)
+
+* Implement assignment statement: <identifier> "=" <expression>
+    * "1" can be an expression( expression can be a factor)
+    * side effect - statement modifies the environment
+    
+
+
