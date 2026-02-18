@@ -6,5 +6,6 @@
     * "1" can be an expression( expression can be a factor)
     * side effect - statement modifies the environment
     
+Statement = print statement | assignment statement
 
 
