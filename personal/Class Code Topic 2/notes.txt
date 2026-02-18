@@ -8,4 +8,5 @@
     
 Statement = print statement | assignment statement
 
-
+* \b - boundary character
+* \W - word character

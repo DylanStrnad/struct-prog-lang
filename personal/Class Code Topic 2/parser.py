@@ -7,11 +7,11 @@ from pprint import pprint
 
 #   expression = term { ("+" | "-") term }
 #   term = factor { ("*" | "/") factor }
-#   factor = <number> | "(" expression ")"
+#   factor = <number> | <identifier> | "(" expression ")"
 
 
 def parse_factor(tokens):
-    """factor = <number> | <identifier> | "(" expression ")" """
+    # factor = <number> | <identifier> | "(" expression ")"
     token = tokens[0]
     if token["tag"] == "number":
         node = {"tag": "number", "value": token["value"]}
@@ -24,7 +24,46 @@ def parse_factor(tokens):
         if tokens[0]["tag"] != ")":
             raise SyntaxError(f"Expected ')', got {tokens[0]}")
         return node, tokens[1:]
-    raise SyntaxError(f"Expected expression, got {tokens[0]}")
+    raise SyntaxError(f"Expected factor, got {tokens[0]}")
+
+def parse_statement(tokens):
+    if tokens[0]["tag"] == "print":
+        return parse_print_statement(tokens)
+    if tokens[0]["tag"] == "identifier":
+        return parse_assignment_statement(tokens)
+    
+def parse_print_statement(tokens):
+    assert tokens[0]["tag"] == "print", "expected print"
+    tokens = tokens[1:]
+    ast, tokens = parse_expression(tokens)
+    return{
+        "tag":"print",
+        "expression": ast
+    }, tokens
+
+def parse_assignment_statement(tokens):
+    assert tokens[0]["tag"] == "identifier", "expected identifier"
+    identifier = tokens[0]["value"]
+    tokens = tokens[1:]
+    assert tokens [0]["tag"] == "=", "expected an ="
+    tokens = tokens[1:]
+    ast, tokens = parse_expression(tokens)
+    return{
+        "tag":"print",
+        "expression": ast
+    }, tokens
+
+def test_print_statement():
+    tokens = tokenize("print 1")
+    ast, tokens = parse_print_statement(tokens)
+    assert ast == {'tag': 'print', 'expression': {'tag': 'number', 'value': 1}}
+    assert tokens[0]["tag"] == None
+    #print(ast)
+    exit(0)
+
+def test_parse_assignment_statement():
+    
+
 
 
 def test_parse_factor():
@@ -42,7 +81,10 @@ def test_parse_factor():
         "right": {"tag": "number", "value": 4},
     }
     assert tokens == [{"tag": None, "line": 1, "column": 6}]
-    
+    tokens = tokenize("(x+4)")
+    ast, tokens = parse_factor(tokens)
+    assert ast == {'tag': '+', 'left': {'tag': 'identifier', 'value': 'x'}, 'right': {'tag': 'number', 'value': 4}}
+    assert tokens[0]["tag"] == None
 
 def parse_term(tokens):
     """term = factor { ("*" | "/") factor }"""
@@ -137,4 +179,5 @@ if __name__ == "__main__":
     test_parse_factor()
     test_parse_term()
     test_parse_expression()
+    test_print_statement()
     print("done.")
