@@ -10,3 +10,8 @@ Statement = print statement | assignment statement
 
 * \b - boundary character
 * \W - word character
+
+block := "{" statement_list "}"                //optional  
+if_statement := "if" "(" expression ")" block [else block]
+while_statement := "while" "(" expression ")" block
+assert_statement := "assert" expression
