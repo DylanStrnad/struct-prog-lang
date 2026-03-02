@@ -1,0 +1,20 @@
+*EBNF*
+if_statement = "if" "(" expression ")" "{" statement_list "}" ["else" "{" statement_list "}"]     ##[] - 0 or 1 of
+statement = print_statement | if_statement | while_statement | assignment_statement
+
+parse_if_statement(tokens) : 
+    expects an if, (, condition, ), {, statement_list, }
+    constructs ast with tag, condition and block
+    if there is an else => parse statement_list
+    consuct ast with else block
+    returns ast, tokens
+
+parse_while_statement(tokens):
+    expects while, (, conditions, ), ... do_block
+    parses statement_list
+    constructs ast
+
+
+
+
+
