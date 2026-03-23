@@ -1,0 +1,19 @@
+Imperative langauge: make instructions for the outcome
+Declaration: already has instructions for the outcome
+
+IMPLEMENTING FUNCTIONS:
+paramerization - functions with parameters.
+    * includes name, parameters, block, return statement
+
+Function call eval:
+1. bind func to func obj.          ex. apply = function(x){print x}
+2. create the calling envrionment. ex. apply(10)
+
+Dynamic scoping - when create new envrionment, parent is the calliing envrionment.
+
+EBNF:
+function_expression = "function" ([parameters list]) { statement_list}
+parareter_list= identifier { "," identifier}
+
+complex_expression = factor {}
+
