@@ -1,0 +1,10 @@
+*ON QUIZ* When are arguments evaluated? - before calling the function. 
+
+*Lazy Evaluator - do not evaluate experssion until it needs to evaluate
+
+exp_if = function(cond., f_then, f_else){
+    if(and)
+        reutrn f_then()
+        else f_else()
+}
+
