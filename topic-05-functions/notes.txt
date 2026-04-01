@@ -8,3 +8,15 @@ exp_if = function(cond., f_then, f_else){
         else f_else()
 }
 
+STORING FUNCTIONS
+A = function(x){
+    print(x)
+}
+
+calling
+a(x)
+
+NESTED ENVIRONMENT (dynamic binding)
+local_environment["$parent"] = environment
+
+*function call is an expression
