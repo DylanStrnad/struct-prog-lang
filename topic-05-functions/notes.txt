@@ -20,3 +20,5 @@ NESTED ENVIRONMENT (dynamic binding)
 local_environment["$parent"] = environment
 
 *function call is an expression
+
+* _=f() used for function invocation
