@@ -17,3 +17,38 @@ parareter_list= identifier { "," identifier}
 
 complex_expression = factor {}
 
+generative funciton - function that returns another function.
+code:
+n = 1
+function g() {
+    n = 12 // creates or updates only local variable
+    f = function(x){
+        ...
+    }
+}
+
+Closure - hold onto envrionment even when its not part of global envrionment. Function has a pointer to the parent envrionment it needs to hold onto.
+When function goes out of scope, envrionment is dropped.
+
+ex.)
+x3 = make_say_hi(3)
+
+make_say_hi(n){
+    char = "!"
+    x.sayhi function(name){
+        for i = 0 to n
+        print(char)
+    }
+}
+
+ex.)
+make_clock(increment)
+    seconds = 0
+    tick()
+        seconds = seconds + increment
+    time()
+        return seconds
+
+clock = make_clock
+clock.tick()
+clock.time()
