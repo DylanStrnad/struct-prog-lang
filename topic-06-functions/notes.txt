@@ -52,3 +52,6 @@ make_clock(increment)
 clock = make_clock
 clock.tick()
 clock.time()
+
+
+*Quiz - Evaluate based on types
