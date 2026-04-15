@@ -1,0 +1,25 @@
+set - look up hill in the stack. 
+extern - Variable is in external envrionment.
+ex.)
+z = 300 // set to 5
+f(){
+    z = 4
+    extern z = z + 1 //looks at external variable
+    print z // 4
+
+    set z = z + 1 // looks up at first occurance of variable
+}
+print z // 5
+
+
+Assignment Model:
+    x = 4
+    
+Trivial Lists:
+ [1,2,3]
+ [[1.2][3,4]]
+
+Indexing:
+x[0]
+x[1][0]
+* parser treats [ after an expression as indexing
